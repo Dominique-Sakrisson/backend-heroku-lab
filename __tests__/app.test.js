@@ -139,7 +139,7 @@ test('returns stickers', async() => {
 
   
   const data = await fakeRequest(app)
-  .get('/stickers/2')
+  .get('/stickers/1')
   .expect('Content-Type', /json/)
   .expect(200);
   
