@@ -110,42 +110,35 @@ describe('app routes', () => {
       .expect('Content-Type', /json/)
       .expect(200);
       
+      expect(data.body).toEqual(expectation);
+    });
+    
+    test('returns stickers', async() => {
+    
+      const expectation = {
+          id: 1,
+          name: "star",
+          category: "space",
+          url: "",
+          in_stock: true,
+          price: 1,
+          inventory: 5,
+          label_type: "vinyl",
+          width: 2,
+          height: 2,
+          shape: "square",
+          seller_id: 1
+    } ;
+    
       
+      const data = await fakeRequest(app)
+      .get('/stickers/1')
+      .expect('Content-Type', /json/)
+      .expect(200);
+    
       expect(data.body).toEqual(expectation);
     });
   });
-});
-
-
-
-test('returns stickers', async() => {
-
-  const expectation = [
-    {
-      id: 1,
-      name: "star",
-      category: "space",
-      url: "",
-      in_stock: true,
-      price: 1,
-      inventory: 5,
-      label_type: "vinyl",
-      width: 2,
-      height: 2,
-      shape: "square",
-      seller_id: 1
-    }  
-  ];
-
-  
-  const data = await fakeRequest(app)
-  .get('/stickers/1')
-  .expect('Content-Type', /json/)
-  .expect(200);
-  
-
-
-  expect(data.body).toEqual(expectation);
 });
 
 
