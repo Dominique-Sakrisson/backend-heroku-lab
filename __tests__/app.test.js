@@ -31,35 +31,121 @@ describe('app routes', () => {
       return client.end(done);
     });
 
-    test('returns animals', async() => {
+    test('returns stickers', async() => {
 
       const expectation = [
         {
-          'id': 1,
-          'name': 'bessie',
-          'coolfactor': 3,
-          'owner_id': 1
+          id: 1,
+          name: "star",
+          category: "space",
+          url: "",
+          in_stock: true,
+          price: 1,
+          inventory: 5,
+          label_type: "vinyl",
+          width: 2,
+          height: 2,
+          shape: "square",
+          seller_id: 1,
         },
         {
-          'id': 2,
-          'name': 'jumpy',
-          'coolfactor': 4,
-          'owner_id': 1
+          id: 2,
+          name: "bird",
+          category: "animal",
+          url: "",
+          in_stock: true,
+          price: 1,
+          inventory: 2,
+          label_type: "polyester",
+          width: 2,
+          height: 2,
+          shape: "circle",
+          seller_id: 1,
         },
         {
-          'id': 3,
-          'name': 'spot',
-          'coolfactor': 10,
-          'owner_id': 1
-        }
+          id: 3,
+          name: "bmw",
+          category: "vehicle",
+          url: "",
+          in_stock: true,
+          price: 1,
+          inventory: 2,
+          label_type: "polyester",
+          width: 2,
+          height: 2,
+          shape: "circle",
+          seller_id: 1,
+        },
+        {
+          id: 4,
+          name: "eggs",
+          category: "food",
+          url: "",
+          in_stock: true,
+          price: 1,
+          inventory: 2,
+          label_type: "polyester",
+          width: 2,
+          height: 2,
+          shape: "circle",
+          seller_id: 1,
+          },
+          {
+            id: 5,
+            name: "beach",
+            category: "nature",
+            url: "",
+            in_stock: true,
+            price: 1,
+            inventory: 2,
+            label_type: "polyester",
+            width: 2,
+            height: 2,
+            shape: "circle",
+            seller_id: 1,
+            }
       ];
-
       const data = await fakeRequest(app)
-        .get('/animals')
-        .expect('Content-Type', /json/)
-        .expect(200);
-
+      .get('/stickers')
+      .expect('Content-Type', /json/)
+      .expect(200);
+      
+      
       expect(data.body).toEqual(expectation);
     });
   });
 });
+
+
+
+test('returns stickers', async() => {
+
+  const expectation = [
+    {
+      id: 1,
+      name: "star",
+      category: "space",
+      url: "",
+      in_stock: true,
+      price: 1,
+      inventory: 5,
+      label_type: "vinyl",
+      width: 2,
+      height: 2,
+      shape: "square",
+      seller_id: 1
+    }  
+  ];
+
+  
+  const data = await fakeRequest(app)
+  .get('/stickers/2')
+  .expect('Content-Type', /json/)
+  .expect(200);
+  
+
+
+  expect(data.body).toEqual(expectation);
+});
+
+
