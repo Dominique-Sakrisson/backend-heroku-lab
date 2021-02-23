@@ -105,6 +105,7 @@ describe('app routes', () => {
             seller_id: 1,
             }
       ];
+
       const data = await fakeRequest(app)
       .get('/stickers')
       .expect('Content-Type', /json/)
@@ -128,7 +129,7 @@ describe('app routes', () => {
           height: 2,
           shape: "square",
           seller_id: 1
-    } ;
+      };
     
       
       const data = await fakeRequest(app)
@@ -138,6 +139,47 @@ describe('app routes', () => {
     
       expect(data.body).toEqual(expectation);
     });
+
+    test('adds a sticker and tests the db for our new sticker', async() => {
+    
+      const newSticker = {
+          name: "best sticker",
+          category: "coolest",
+          url: "",
+          in_stock: true,
+          price: 100,
+          inventory: 1,
+          label_type: "vinyl",
+          width: 10,
+          height: 10,
+          shape: "amorphous",
+          seller_id: 2
+      };
+
+      const expectedSticker = {
+        ...newSticker,
+        id:6
+      }
+    
+      const data = await fakeRequest(app)
+        .post('/stickers/999')
+        .send(newSticker)
+        .expect('Content-Type', /json/)
+        .expect(200);
+
+      expect(data.body).toEqual(expectedSticker);
+      
+      const allStickers = await fakeRequest(app)
+      .get('/stickers')
+      .expect('Content-Type', /json/)
+      .expect(200);
+    
+
+      const bestSticker = allStickers.body.find(sticker => sticker.name === 'best sticker');
+
+      expect(bestSticker).toEqual(expectedSticker);
+    });
+
   });
 });
 
