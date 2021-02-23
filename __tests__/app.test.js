@@ -197,7 +197,7 @@ describe('app routes', () => {
         seller_id: 2
       }
       
-      const updatedSticker =    await fakeRequest(app)
+      const updatedSticker = await fakeRequest(app)
       .put('/stickers/6')
       .send(expectedSticker)
       .expect('Content-Type', /json/)
@@ -205,6 +205,20 @@ describe('app routes', () => {
 
       expect(updatedSticker.body).toEqual(expectedSticker);
     });
+
+    test('udeletes a sticker and tests that it was removed', async() => {
+
+      const expectedSticker = '';
+      
+      const updatedSticker = await fakeRequest(app)
+      .delete('/stickers/2')
+      .send(expectedSticker)
+      .expect('Content-Type', /json/)
+      .expect(200);
+      console.log(updatedSticker.body);
+      expect(updatedSticker.body).toEqual(expectedSticker);
+    });
+
   });
 });
 
