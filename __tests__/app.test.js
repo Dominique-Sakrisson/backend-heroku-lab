@@ -207,16 +207,36 @@ describe('app routes', () => {
     });
 
     test('udeletes a sticker and tests that it was removed', async() => {
-
-      const expectedSticker = '';
       
-      const updatedSticker = await fakeRequest(app)
-      .delete('/stickers/2')
-      .send(expectedSticker)
+      const expectation = {
+        "id": 1,
+        "name": "star",
+        "category": "space",
+        "url": "",
+        "in_stock": true,
+        "price": 1,
+        "inventory": 5,
+        "label_type": "vinyl",
+        "width": 2,
+        "height": 2,
+        "shape": "square",
+        "seller_id": 1
+      }
+      
+      const data = await fakeRequest(app)
+      .delete('/stickers/1')
       .expect('Content-Type', /json/)
       .expect(200);
-      console.log(updatedSticker.body);
-      expect(updatedSticker.body).toEqual(expectedSticker);
+      
+      expect(data.body).toEqual(expectation);
+
+      const deleted = await fakeRequest(app)
+        .get('/stickers/1')
+        .expect('Content-Type', /json/)
+        .expect(200)
+
+        expect(deleted.body).toEqual('');
+
     });
 
   });
