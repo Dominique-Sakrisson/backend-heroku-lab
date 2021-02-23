@@ -162,7 +162,7 @@ describe('app routes', () => {
       }
     
       const data = await fakeRequest(app)
-        .post('/stickers/999')
+        .post('/stickers')
         .send(newSticker)
         .expect('Content-Type', /json/)
         .expect(200);
@@ -180,6 +180,56 @@ describe('app routes', () => {
       expect(bestSticker).toEqual(expectedSticker);
     });
 
+    test('updates a sticker and tests that it was actually updated', async() => {
+    
+      const newSticker = {
+          name: "best sticker",
+          category: "coolest",
+          url: "",
+          in_stock: true,
+          price: 100,
+          inventory: 1,
+          label_type: "vinyl",
+          width: 10,
+          height: 10,
+          shape: "amorphous",
+          seller_id: 2
+      };
+
+      const expectedSticker = {
+        id:6,
+        in_stock: false,
+        inventory: 0,
+        name: 'best sticker',
+        category : 'coolest',
+        url: '',
+        price: 100,
+        label_type: 'vinyl',
+        width: 10,
+        height: 10,
+        shape: 'amorphous',
+        seller_id: 2
+      }
+
+      
+          let updatedSticker = await fakeRequest(app)
+            .get('/stickers/6')
+            .expect('Content-Type', /json/)
+            .expect(200);
+          // for some reason this is not doing any editing of the array item in the test but when ran in localhost in postman it works exactly as it should
+     await fakeRequest(app)
+      .put('/stickers/6')
+      .send(newSticker)
+      .expect('Content-Type', /json/)
+      .expect(200);
+
+      updatedSticker = await fakeRequest(app)
+            .get('/stickers/6')
+            .expect('Content-Type', /json/)
+            .expect(200);
+
+      expect(updatedSticker.body).toEqual(expectedSticker);
+    });
   });
 });
 
