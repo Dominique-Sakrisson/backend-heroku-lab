@@ -1,6 +1,6 @@
 module.exports = [{
   name: 'star',
-  category: 'space',
+  category_id: 1,
   url: '',
   in_stock: true,
   price: 1.00,
@@ -13,7 +13,7 @@ module.exports = [{
 }, 
 {
   name: 'bird',
-  category: 'animal',
+  category_id: 2,
   url: '',
   in_stock: true,
   price: 1.00,
@@ -26,7 +26,7 @@ module.exports = [{
 },
 {
   name: 'bmw',
-  category: 'vehicle',
+  category_id: 3,
   url: '',
   in_stock: true,
   price: 1.00,
@@ -39,7 +39,7 @@ module.exports = [{
 },
 {
   name: 'eggs',
-  category: 'food',
+  category_id: 4,
   url: '',
   in_stock: true,
   price: 1.00,
@@ -52,7 +52,7 @@ module.exports = [{
 },
 {
   name: 'beach',
-  category: 'nature',
+  category_id: 5,
   url: '',
   in_stock: true,
   price: 1.00,
