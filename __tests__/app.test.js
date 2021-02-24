@@ -206,7 +206,7 @@ describe('app routes', () => {
       .expect('Content-Type', /json/)
       .expect(200);
 
-      console.log(`updated sticker request =${JSON.stringify(updatedSticker.body)}`);
+      // console.log(`updated sticker request =${JSON.stringify(updatedSticker.body)}`);
       //ask about whether this is doing the same thing as the updated sticker thing. This is making a get request, is using the put request return for the expected bypassing hitting th endpoint making this solution incorrect?
       // const data = await fakeRequest(app)
       //   .get('/stickers/6')
@@ -215,6 +215,33 @@ describe('app routes', () => {
 
       expect(updatedSticker.body).toEqual(expectedSticker);
     });
+
+    test('grabs from the categories table', async() => {
+    
+      const choiceCategory = {
+        category_name: 'space' 
+      };
+      
+      const expectedCat = {
+        ...choiceCategory,
+        id: 1,
+      }
+    
+      const data = await fakeRequest(app)
+        .get('/categories/1')
+        .expect('Content-Type', /json/)
+        .expect(200);
+      
+      // const allStickers = await fakeRequest(app)
+      // .get('/categories/1')
+      // .expect('Content-Type', /json/)
+      // .expect(200);
+
+      // const bestSticker = allStickers.body.find(sticker => sticker.name === 'best sticker');
+
+      expect(data.body).toEqual(expectedCat);
+    });
+
 
     test('deletes a sticker and tests that it was removed', async() => {
       
@@ -239,7 +266,7 @@ describe('app routes', () => {
       .expect(200);
       
       // expect(data.body).toEqual(expectation);
-
+//same kind of deal as above here, IDK if this is a good or bad test. doing the expect with deleted.body tests for an empty array, if i tested for data.body I would have to pass .toEqual an empty string, I'm sort of confused as to why the get endpoint returns an empty array and if thats the correct way to have it work
       const deleted = await fakeRequest(app)
         .get('/stickers/6')
         .expect('Content-Type', /json/)
