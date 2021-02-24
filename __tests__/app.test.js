@@ -216,7 +216,7 @@ describe('app routes', () => {
       expect(updatedSticker.body).toEqual(expectedSticker);
     });
 
-    test('grabs from the categories table', async() => {
+    test('grabs first category info from the categories table', async() => {
     
       const choiceCategory = {
         category_name: 'space' 
