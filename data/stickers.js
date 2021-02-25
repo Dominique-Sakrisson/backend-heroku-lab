@@ -1,0 +1,66 @@
+module.exports = [{
+  name: 'star',
+  category_id: 1,
+  url: '',
+  in_stock: true,
+  price: 1.00,
+  inventory: 5,
+  label_type: "vinyl",
+  width: 2,
+  height: 2,
+  shape: "square",
+  seller_id: 100
+}, 
+{
+  name: 'bird',
+  category_id: 2,
+  url: '',
+  in_stock: true,
+  price: 1.00,
+  inventory: 2,
+  label_type: "polyester",
+  width: 2,
+  height: 2,
+  shape: "circle",
+  seller_id: 200
+},
+{
+  name: 'bmw',
+  category_id: 3,
+  url: '',
+  in_stock: true,
+  price: 1.00,
+  inventory: 2,
+  label_type: "polyester",
+  width: 2,
+  height: 2,
+  shape: "circle",
+  seller_id: 300
+},
+{
+  name: 'eggs',
+  category_id: 4,
+  url: '',
+  in_stock: true,
+  price: 1.00,
+  inventory: 2,
+  label_type: "polyester",
+  width: 2,
+  height: 2,
+  shape: "circle",
+  seller_id: 400
+},
+{
+  name: 'beach',
+  category_id: 5,
+  url: '',
+  in_stock: true,
+  price: 1.00,
+  inventory: 2,
+  label_type: "polyester",
+  width: 2,
+  height: 2,
+  shape: "circle",
+  seller_id: 500
+}
+];
