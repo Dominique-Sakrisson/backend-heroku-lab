@@ -33,7 +33,7 @@ async function run() {
                     width INTEGER NOT NULL,
                     height INTEGER NOT NULL,
                     shape VARCHAR(512),
-                    seller_id INTEGER NOT NULL REFERENCES users(id)
+                    seller_id INTEGER 
             );
         `);
 
